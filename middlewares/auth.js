@@ -26,8 +26,6 @@ module.exports = () => (req, res, next) => {
 };
 
 async function register(username, password) {
-    // TODO adapt properties to project requirements
-    // TODO extra validations
     const existing = await userService.getUserByUsername(username);
 
     if (existing) {
