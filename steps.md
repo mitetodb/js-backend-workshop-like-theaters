@@ -14,7 +14,7 @@
 
 # Application Requirements (Hotel-Booking)
 
-[ ] Include resources (HTML & CSS, etc.)
+[X] Include resources (HTML & CSS, etc.)
 [ ] Arrange templates (without editing)
 [ ] Update config to match project requirements (db name)
 [ ] Adapt User model and user service, auth middleware to project requirements
