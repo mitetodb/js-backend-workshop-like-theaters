@@ -1,8 +1,8 @@
 const router = require('express').Router();
-const { isGuest, isUser } = require('../middlewares/guards');
 
 router.get('/', async (req, res) => {
-    const plays = await req.storage.getPublicPlays();
+    const plays = await req.storage.getAllPlays(req.query.orderBy);
+    
     res.render('home', { plays });
 });
 

@@ -1,11 +1,13 @@
 const Play = require('../models/Play');
 
-async function getAllPlays() {
-    return Play.find({}).lean();
-}
+async function getAllPlays(orderBy) {
+    let sort = { createdAt: -1 };
 
-async function getPublicPlays() {
-    return Play.find({ public: true }).sort({ createdAt: -1 }).lean();
+    if (orderBy == 'likes') {
+        sort = { usersLiked: 'desc' };
+    }
+
+    return Play.find({ public: true }).sort(sort).lean();
 }
 
 async function getPlayById(id) {
@@ -51,7 +53,6 @@ async function likePlay(playId, userId) {
 
 module.exports = {
     getAllPlays,
-    getPublicPlays,
     getPlayById,
     createPlay,
     updatePlay,
