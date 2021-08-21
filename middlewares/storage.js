@@ -1,6 +1,10 @@
+const playService = require('../services/play');
+
 module.exports = () => (req, res, next) => {
     // import and decorate services.
-    req.storage = {};
+    req.storage = {
+        ...playService
+    };
 
     next();
 };

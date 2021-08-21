@@ -20,5 +20,5 @@
 [X] Adapt User model and user service, auth middleware to project requirements
 [X] Implements register, login pages, register, login, logout actions.
 [X] Create models for project specific data
-[ ] Create data services and middlewares for project specific data
+[X] Create data services and middlewares for project specific data
 [ ] Implements page actions for project specific functionality (validations and error handlings, redirects)
