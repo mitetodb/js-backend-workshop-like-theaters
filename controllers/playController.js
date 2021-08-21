@@ -39,8 +39,9 @@ router.post('/create', isUser(), async (req, res) => {
 router.get('/details/:id', async (req, res) => {
     const play = await req.storage.getPlayById(req.params.id);
 
+    play.hasUser = Boolean(req.user);
     play.isAuthor = req.user && req.user._id == play.author;
-    play.liked = req.user && play.usersLiked.includes(req.user._id);
+    play.liked = req.user && play.usersLiked.find(u => u._id == req.user._id);
 
     res.render('theater/details', play);
 });
@@ -108,8 +109,22 @@ router.get('/delete/:id', isUser(), async (req, res) => {
     }
 });
 
-router.get('/like/:id', isUser(), (req, res) => {
-    res.render('/');
+router.get('/like/:id', isUser(), async (req, res) => {
+    try {
+        const play = await req.storage.getPlayById(req.params.id);
+
+        if(play.author == req.user._id) {
+            throw new Error('Cannot like your own play');
+        }
+
+        await req.storage.likePlay(req.params.id, req.user._id);
+        res.redirect('/play/details/' + req.params.id);
+
+    } catch (err) {
+        console.log(err.message);
+        res.redirect('/play/details/' + req.params.id);
+
+    }
 });
 
 

@@ -43,11 +43,18 @@ async function deletePlay(id) {
     return Play.findByIdAndDelete(id);
 }
 
+async function likePlay(playId, userId) {
+    const play = await Play.findById(playId);
+    play.usersLiked.push(userId);
+    return play.save();
+}
+
 module.exports = {
     getAllPlays,
     getPublicPlays,
     getPlayById,
     createPlay,
     updatePlay,
-    deletePlay
+    deletePlay,
+    likePlay
 };
