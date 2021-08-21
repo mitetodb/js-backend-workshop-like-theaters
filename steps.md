@@ -22,3 +22,4 @@
 [X] Create models for project specific data
 [X] Create data services and middlewares for project specific data
 [X] Implements page actions for project specific functionality (validations and error handlings, redirects)
+[X] Clear empty space in input data fields with trim() 
